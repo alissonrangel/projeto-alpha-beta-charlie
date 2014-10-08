@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:decorate template="index.xhtml">
+        <ui:define name="centro">
+            <h:form>
+                <p:dataTable value="#{contatoController.listaContatos}" var="lista" emptyMessage="Não tem nenhum registro">
+                    <p:column headerText="id" >
+                        <p:outputLabel value="#{lista.id}"/>
+                    </p:column>
+                    
+                    <p:column headerText="nome" >
+                        <p:outputLabel value="#{lista.nome}"/>
+                    </p:column>
+                    
+                    <p:column headerText="endereco" >
+                        <p:outputLabel value="#{lista.endereco}"/>
+                    </p:column>
+                    
+                    <p:column headerText="cidade" >
+                        <p:outputLabel value="#{lista.cidade}"/>
+                    </p:column>
+                    
+                    <p:column headerText="uf" >
+                        <p:outputLabel value="#{lista.uf}"/>
+                    </p:column>
+                    
+                    <p:column headerText="telefone" >
+                        <p:outputLabel value="#{lista.telefone}" />
+                    </p:column>
+                    
+                    <p:column headerText="celular" >
+                        <p:outputLabel value="#{lista.celular}" />
+                    </p:column>
+                    
+                    <p:column headerText="email" >
+                        <p:outputLabel value="#{lista.email}"/>
+                    </p:column>
+                    
+                    <p:column headerText="*" style="text-align: center" resizable="false" width="40">
+                        <p:commandLink action="editarcontato" actionListener="#{contatoController.selecionarContato()}">
+                            <p:graphicImage value="/imagens/indice.jpg" width="36" height="36"/>
+                        </p:commandLink>
+                    </p:column>
+                    
+                    <p:column headerText="*" style="text-align: center" resizable="false" width="40">
+                        <p:commandLink action="excluircontato" actionListener="#{contatoController.selecionarContato()}">
+                            <p:graphicImage value="/imagens/excluir.jpg" width="36" height="36"/>
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:decorate>
+</html>
+

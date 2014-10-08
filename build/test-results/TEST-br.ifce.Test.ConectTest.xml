@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.ifce.Test.ConectTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-09-23T19:55:56" hostname="Alisson-PC" time="0.671">
+  <properties/>
+  <testcase name="test" classname="br.ifce.Test.ConectTest" time="0.671"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

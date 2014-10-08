@@ -1,0 +1,77 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+webAppDirName = 'WebContent'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir { dirs "WebContent/WEB-INF/lib", "libs"}
+}
+
+buildscript {
+	repositories {
+    	jcenter()
+	}
+	dependencies {
+		classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5.1'
+	}
+}
+
+apply plugin: 'cargo'
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    compile 'com.sun.faces:jsf-api:2.2.8'
+    compile 'com.sun.faces:jsf-impl:2.2.8'
+    compile 'mysql:mysql-connector-java:5.1.32'
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.primefaces:primefaces:4.0'
+    
+}
+
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+
+cargo {
+    containerId = 'tomcat7x'
+    port = 8080
+
+    deployable {
+        context = 'Agenda3'
+    }
+
+    remote {
+        hostname = 'localhost'
+        username = 'alisson'
+        password = '123'
+    }
+
+    local {
+        homeDir = file('C:\\pessoal\\desenvolvimento\\apache-tomcat-7.0.55-windows-x64\\apache-tomcat-7.0.55\\webapps')
+        timeout = 60000
+
+        containerProperties {
+            property 'cargo.tomcat.ajp.port', 9099
+        }
+    }
+}
